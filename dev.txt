@@ -51,6 +51,8 @@ aws s3 ls
 terraform state list
 
 
+http://my-static-site-123456-bassembba.s3-website-eu-west-1.amazonaws.com/
+
 -------------------------------------
 # AWS S3 Static Website Deployment with Terraform and GitHub Actions
 
