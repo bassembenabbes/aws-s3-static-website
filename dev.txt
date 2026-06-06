@@ -1,0 +1,172 @@
+https://killercoda.com/
+https://killercoda.com/cka
+
+https://github.com/DanaAmine
+
+https://github.com/bassembenabbes
+
+https://github.com/DanaAmine/GENREAL
+
+
+sudo apt update
+sudo apt install -y gnupg software-properties-common curl
+curl -fsSL https://apt.releases.hashicorp.com/gpg | \
+sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
+https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
+sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update
+sudo apt install terraform
+terraform version 
+
+
+
+steps to install aws cli :
+
+aws configure
+
+private : ....WGP+
+access :....BOO 
+eu-west-3
+
+aws configure
+
+ : AK...BOO
+ : 0t....WGP+
+Default region name [eu-west-3]: 
+Default output format [json]: 
+
+
+terraform init
+
+terraform plan -var="bucket_name=my-static-site-123456-bassembba"
+
+terraform apply -var="bucket_name=my-static-site-123456-bassembba"
+
+
+website_endpoint = "my-static-site-123456-bassembba.s3-website-eu-west-1.amazonaws.com"
+
+aws s3 ls s3://my-static-site-123456-bassembba
+aws s3 ls
+terraform state list
+
+
+-------------------------------------
+# AWS S3 Static Website Deployment with Terraform and GitHub Actions
+
+## Objective
+
+Create a static website deployment pipeline using AWS S3, Terraform, and GitHub Actions CI/CD.
+
+## Requirements
+
+### 1. Create Static Website Files
+
+Create the following files:
+
+* index.html
+* styles.css
+* app.js
+
+The website should display a simple page with styling and a JavaScript interaction.
+
+### 2. Infrastructure as Code with Terraform
+
+Using Terraform:
+
+* Create an S3 bucket with a globally unique name.
+* Enable Static Website Hosting.
+* Configure `index.html` as the default document.
+* Create the required bucket policy for public read access.
+* Output the website endpoint URL after deployment.
+
+### 3. Deploy Infrastructure
+
+Use Terraform commands:
+
+* terraform init
+* terraform plan
+* terraform apply
+
+Verify that the S3 website endpoint is generated successfully.
+
+### 4. Create GitHub Repository
+
+* Create a GitHub repository.
+* Push all project files to the repository.
+* Use Git branching (main or dev branch).
+
+### 5. Configure AWS IAM User
+
+Create a dedicated IAM user for deployments with permissions:
+
+* s3:PutObject
+* s3:DeleteObject
+* s3:ListBucket
+
+Generate an Access Key and Secret Access Key.
+
+### 6. Configure GitHub Secrets
+
+Add the following repository secrets:
+
+* AWS_ACCESS_KEY_ID
+* AWS_SECRET_ACCESS_KEY
+* AWS_REGION
+* S3_BUCKET
+
+### 7. Create GitHub Actions Workflow
+
+Create `.github/workflows/deploy.yml` that:
+
+* Checks out the repository.
+* Configures AWS credentials.
+* Uploads website files to S3 using:
+
+aws s3 sync website/ s3://<bucket-name> --delete
+
+### 8. Validation
+
+Verify:
+
+* GitHub Actions workflow executes successfully.
+* AWS credentials are loaded correctly.
+* Files are uploaded to S3.
+* The bucket contains:
+
+  * index.html
+  * styles.css
+  * app.js
+* The website is accessible through the S3 website endpoint.
+
+## Troubleshooting Performed
+
+Issues identified during implementation:
+
+1. S3 website returned:
+
+   * 404 Not Found
+   * NoSuchKey: index.html
+
+   Cause:
+
+   * Bucket was empty; website files were not uploaded.
+
+2. GitHub Actions failed during AWS configuration:
+
+   Error:
+   "Credentials could not be loaded from any providers"
+
+   Cause:
+
+   * Missing or incorrectly configured GitHub Secrets for AWS credentials.
+
+## Deliverables
+
+* Terraform code
+* Website source files
+* GitHub Actions workflow
+* Screenshot of successful GitHub Actions run
+* Screenshot of S3 bucket contents
+* Screenshot of deployed website
+* Documentation of deployment steps and troubleshooting
