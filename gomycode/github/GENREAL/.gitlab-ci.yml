@@ -1,0 +1,37 @@
+stages:
+  - test
+  - build
+  - deploy
+
+variables:
+  IMAGE_NAME: "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA"
+
+test:
+  image: python:3.12-slim
+  stage: test
+  before_script:
+    - pip install -r app/requirements.txt
+  script:
+    - cd app
+    - pytest
+
+build:
+  image: docker:27
+  stage: build
+  services:
+    - docker:27-dind
+  script:
+    - docker build -t "$IMAGE_NAME" .
+    - echo "$CI_REGISTRY_PASSWORD" | docker login "$CI_REGISTRY" -u "$CI_REGISTRY_USER" --password-stdin
+    - docker push "$IMAGE_NAME"
+  only:
+    - main
+
+deploy:
+  image: alpine:3.20
+  stage: deploy
+  script:
+    - echo "TODO: SSH to server, pull image, and restart service"
+  only:
+    - main
+

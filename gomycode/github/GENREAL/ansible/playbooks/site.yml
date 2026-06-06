@@ -1,0 +1,7 @@
+- name: Provision Ubuntu web servers
+  hosts: web
+  become: true
+  roles:
+    - common
+    - docker
+

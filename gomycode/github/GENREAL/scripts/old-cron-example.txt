@@ -1,0 +1,7 @@
+# Old cron entry:
+# 0 2 * * * /opt/devops-starter/scripts/backup-demo.sh
+#
+# Replacement:
+# systemctl enable --now backup-demo.timer
+# systemctl list-timers backup-demo.timer
+

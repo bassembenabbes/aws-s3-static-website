@@ -1,0 +1,20 @@
+[Unit]
+Description=DevOps Starter App
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=appuser
+Group=appuser
+WorkingDirectory=/opt/devops-starter/app
+EnvironmentFile=/etc/devops-starter/app.env
+ExecStart=/opt/devops-starter/venv/bin/gunicorn --bind 127.0.0.1:8000 app:app
+Restart=always
+RestartSec=5
+MemoryMax=256M
+CPUQuota=50%
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
+

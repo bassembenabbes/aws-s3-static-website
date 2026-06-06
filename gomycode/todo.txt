@@ -1,0 +1,36 @@
+Containers & Orchestration
+
+Install Docker, write multi-stage Dockerfiles to minimize image size
+Set up Docker Compose for a multi-service app (app + DB + reverse proxy)
+Install a single-node k3s cluster and deploy a service with a LoadBalancer
+Configure a private Docker registry on Ubuntu with authentication
+
+Web Servers & Reverse Proxy
+
+Configure nginx as a reverse proxy with SSL termination and rate limiting
+Set up load balancing across multiple app instances with health checks
+Tune nginx worker processes, connections, and buffer sizes for production
+
+Monitoring & Logging
+
+Deploy the Prometheus + Grafana stack, scrape node metrics, build dashboards
+Set up Loki + Promtail to centralize logs from multiple services
+Configure alertmanager to send alerts to Slack or email on disk/CPU thresholds
+
+Networking & Security
+
+Configure ufw rules for a typical web server (80, 443, SSH only)
+Set up SSH hardening: key-only auth, custom port, fail2ban, login banners
+Use WireGuard to connect servers across cloud providers securely
+
+Storage & Backups
+
+Automate backups with restic or rsync to S3-compatible storage
+Mount and manage NFS or S3 (via s3fs/rclone) as shared storage between servers
+Set up log rotation with logrotate for custom application logs
+
+Process & Service Management
+
+Write custom systemd unit files for your apps with restart policies and resource limits
+Use journalctl effectively: filter by time, unit, priority, and export logs
+Manage environment variables and secrets safely using .env files or systemd credentials

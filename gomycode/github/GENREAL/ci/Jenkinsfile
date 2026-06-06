@@ -1,0 +1,29 @@
+pipeline {
+  agent any
+
+  environment {
+    IMAGE_NAME = "devops-starter-app:${env.BUILD_NUMBER}"
+  }
+
+  stages {
+    stage('Test') {
+      steps {
+        sh 'python3 -m pip install -r app/requirements.txt'
+        sh 'cd app && python3 -m pytest'
+      }
+    }
+
+    stage('Build') {
+      steps {
+        sh 'docker build -t $IMAGE_NAME .'
+      }
+    }
+
+    stage('Deploy') {
+      steps {
+        sh 'echo "TODO: deploy image to the target server"'
+      }
+    }
+  }
+}
+

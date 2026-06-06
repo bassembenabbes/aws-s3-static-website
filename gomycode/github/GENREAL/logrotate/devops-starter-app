@@ -1,0 +1,12 @@
+/var/log/devops-starter/*.log {
+    daily
+    rotate 14
+    compress
+    missingok
+    notifempty
+    create 0640 appuser appuser
+    postrotate
+        systemctl reload devops-starter-app >/dev/null 2>&1 || true
+    endscript
+}
+

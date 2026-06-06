@@ -1,0 +1,7 @@
+[Unit]
+Description=Run demo backup script
+
+[Service]
+Type=oneshot
+ExecStart=/opt/devops-starter/scripts/backup-demo.sh
+
